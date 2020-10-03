@@ -27,6 +27,19 @@ function App() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (charge !== '' && amount > '0') {
+      const singleExpense = {
+        id: uuidv4(),
+        charge: charge,
+        amount: amount,
+      };
+      // @ts-ignore
+      setExpenses([...expenses, singleExpense]);
+      setCharge('');
+      setAmount('');
+    } else {
+      //handle alert
+    }
   };
 
   return (
@@ -48,7 +61,8 @@ function App() {
         <span className="total">
           $
           {expenses.reduce((acc, curr) => {
-            return (acc += curr.amount);
+            // @ts-ignore
+            return (acc += parseInt(curr.amount));
           }, 0)}
         </span>
       </h1>
