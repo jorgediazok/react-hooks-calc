@@ -60,17 +60,20 @@ function App() {
 
   //Clear all items
   const clearItems = () => {
-    console.log('Cleared all items');
+    setExpenses([]);
+    handleAlert({ type: 'danger', text: 'all items deleted' });
   };
 
   //Handle delete
   const handleDelete = (id) => {
-    console.log(`item deleted: ${id}`);
+    let tempExpenses = expenses.filter((item) => item.id !== id);
+    setExpenses(tempExpenses);
+    handleAlert({ type: 'danger', text: 'item deleted' });
   };
 
   //Handle edit
   const handleEdit = (id) => {
-    console.log(`item deleted: ${id}`);
+    console.log(`item edited: ${id}`);
   };
 
   return (
