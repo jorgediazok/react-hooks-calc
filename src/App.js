@@ -18,10 +18,20 @@ function App() {
   //State values (single expense, amount expense)
   const [charge, setCharge] = useState('');
   const [amount, setAmount] = useState('');
+  //Alert
+  const [alert, setAlert] = useState({ show: false });
   //Functionality
   const handleCharge = (e) => {
     setCharge(e.target.value);
   };
+  //handle alert
+  const handleAlert = ({ type, text }) => {
+    setAlert({ show: true, type, text });
+    setTimeout(() => {
+      setAlert({ show: false });
+    }, 3000);
+  };
+
   const handleAmount = (e) => {
     setAmount(e.target.value);
   };
@@ -35,15 +45,21 @@ function App() {
       };
       // @ts-ignore
       setExpenses([...expenses, singleExpense]);
+      handleAlert({ type: 'success', text: 'item added' });
       setCharge('');
       setAmount('');
     } else {
       //handle alert
+      handleAlert({
+        type: 'danger',
+        text: `charge can not be an empty value and amount value has to be bigger than zero`,
+      });
     }
   };
 
   return (
     <React.Fragment>
+      {alert.show && <Alert type={alert.type} text={alert.text} />}
       <Alert />
       <h1>Budget Calculator</h1>
       <main className="App">
