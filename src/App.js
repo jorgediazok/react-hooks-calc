@@ -35,6 +35,7 @@ function App() {
   const handleAmount = (e) => {
     setAmount(e.target.value);
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (charge !== '' && amount > '0') {
@@ -57,6 +58,21 @@ function App() {
     }
   };
 
+  //Clear all items
+  const clearItems = () => {
+    console.log('Cleared all items');
+  };
+
+  //Handle delete
+  const handleDelete = (id) => {
+    console.log(`item deleted: ${id}`);
+  };
+
+  //Handle edit
+  const handleEdit = (id) => {
+    console.log(`item deleted: ${id}`);
+  };
+
   return (
     <React.Fragment>
       {alert.show && <Alert type={alert.type} text={alert.text} />}
@@ -70,7 +86,12 @@ function App() {
           handleCharge={handleCharge}
           handleSubmit={handleSubmit}
         />
-        <ExpenseList expenses={expenses} />
+        <ExpenseList
+          expenses={expenses}
+          handleDelete={handleDelete}
+          handleEdit={handleEdit}
+          clearItems={clearItems}
+        />
       </main>
       <h1>
         total spending :
