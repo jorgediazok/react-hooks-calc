@@ -20,7 +20,7 @@ h1 {
   text-align: center;
   text-transform: capitalize;
   margin: 2rem 0;
-  color: var(--mainWhite);
+  color: var(--mainBlack);
   letter-spacing: 5px;
 }
 .App {
